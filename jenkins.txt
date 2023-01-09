@@ -1,0 +1,54 @@
+pipeline
+{
+	agent any
+	tools 
+		{	
+			maven 'mymaven'
+		}
+	stages
+		{
+			stage('clonerepo')
+				{
+					steps
+						{
+							git 'https://github.com/Fajuuuu/https-github.com-edureka-git-DevOpsClassCodes.git'
+						}
+				}	
+			stage('compile')
+				{	
+					steps
+						{
+							sh 'mvn compile'
+						}
+				}
+			stage('codereview')
+                                {
+                                        steps
+                                                {
+                                                        sh 'mvn pmd:pmd'
+                                                }
+                                }
+			stage('test')
+                                {
+                                        steps
+                                                {
+                                                        sh 'test'
+                                                }
+                                }
+
+			stage('codecoverage')
+                                {
+                                        steps
+                                                {
+                                                        sh 'verify'
+                                                }
+                                }
+			stage('package')
+                                {
+                                        steps
+                                                {
+                                                        sh 'mvn package'
+                                                }
+                                }
+		}
+}
