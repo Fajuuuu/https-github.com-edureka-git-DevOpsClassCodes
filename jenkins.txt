@@ -32,7 +32,7 @@ pipeline
                                 {
                                         steps
                                                 {
-                                                        sh 'test'
+                                                        sh 'mvn test'
                                                 }
                                 }
 
@@ -40,7 +40,7 @@ pipeline
                                 {
                                         steps
                                                 {
-                                                        sh 'verify'
+                                                        sh 'mvn verify'
                                                 }
                                 }
 			stage('package')
